@@ -396,9 +396,47 @@ Duplication may be the root of all evil in software. Many principles and practic
 
 Some programmers follow Edsger Dijkstra’s rules of structured programming. Dijkstra said that every function, and every block within a function, should have one entry and one exit. Following these rules means that there should only be one return statement in a function, no `break` or `continue` statements in a loop, and never, _ever_, any `goto` statements.
 
+The paradigm says that all algorithms should be composed of three basic operations:
+- Sequence
+A sequence is the arrangment of two blocks in time. The exit of the first block feeds the entry to the second.
+- Selection
+A selection is a boolean expression that splits the flow of control into pathways. Each of those pathways contains a block, one of those blocks gets executed, then the two pathways join, and then there is a single exit.
+- Iteration
+It is the repeated execution of a block until some boolean expression is satisfied, at which point, the iteration exits.
+
+Dijkstra showed that if you composed your algorith out of the above structures, it is possible to reason them sequentially. That is because each of the structure's correctness does not depend on any of the others. They all have a single entrance at the top and a single entrance at the bottom. He also showed that so long as you did not violate the recursive block structures with unconstrained goto statements, you could construct proofs of correctness.
+
+> A provable system is an understandable system!
+
 While we are sympathetic to the goals and disciplines of structured programming, those rules serve little benefit when functions are very small. It is only in larger functions that such rules provide significant benefit.
 
-So if you keep your functions small, then the occasional multiple `return` , `break` , or `continue` statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule. On the other hand, `goto` only makes sense in large functions, so it should be avoided
+* The single entry-exit rule within functions does not necessarily mean that you cannot have multiple return statements in a function.
+* Mid-loop `return` and `break`  statements add an unexpressed and inderict exit condition adding to complexity (example shown below).
+* `continue` statements inside loops don't violate the structured programming paradigm because it becomes a no-op to hop onto the next iteration.
+
+```
+if ((result < 1) || (result > 12)) {
+  for (int i = 0; i < monthNames.length; i += 1) {
+    if (s.equals(shortMonthNames[i]) {
+    	result = i + 1;
+	break;
+    }
+    
+    if (s.equals(monthNames[i])) {
+    	result = i + 1;
+	break;
+    }
+  }
+}
+
+```
+
+> Your first responsibility is towards your readers. It is more important to make your code understandable, than it is to make your code work!
+
+Anything you do that makes your code harder to sequentially reason about matters an awful lot!
+
+So if you keep your functions small, then the occasional multiple `return` , `break` , or `continue` statement does no harm and can sometimes even be more expressive than the single-entry, single-exit rule. It is pretty tough not to follow structured programming if you keep your functions small. On the other hand, `goto` only makes sense in large functions, so it should be avoided
+
 
 <a name="chapter4">
 <h1>Chapter 4 -  Comments</h1>
