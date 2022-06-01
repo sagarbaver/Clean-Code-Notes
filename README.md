@@ -1069,7 +1069,9 @@ Many code bases are completely dominated by error handling. When I say dominated
 
 ### Use Exceptions Rather Than Return Codes
 
-Back in the distant past there were many languages that didn't have exceptions. In those languages the techniques for handling and reporting errors were limited. You either set an error flag or returned an error code that the caller could check
+Back in the distant past there were many languages that didn't have exceptions. In those languages the techniques for handling and reporting errors were limited. You either set an error flag or returned an error code that the caller could check.
+
+Instead, what you should be doing is throw an exception that is **scoped** to the class that throws it, instead of throwing canned exceptions from the Java library. It should be named with much specific information as possible.
 
 ### Write Your Try-Catch-Finally Statement First
 
