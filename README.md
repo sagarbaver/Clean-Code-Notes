@@ -1071,21 +1071,23 @@ Many code bases are completely dominated by error handling. When I say dominated
 
 Back in the distant past there were many languages that didn't have exceptions. In those languages the techniques for handling and reporting errors were limited. You either set an error flag or returned an error code that the caller could check.
 
-Instead, what you should be doing is throw an exception that is **scoped** to the class that throws it, instead of throwing canned exceptions from the Java library. It should be named with much specific information as possible.
+Instead, what you should be doing is throw an exception that is **scoped** to the class that throws it, instead of throwing canned exceptions from the Java library. It should be named with much specific information as possible. Throw unchecked exceptions over checked exceptions, i.e., exceptions that are deribed from the `RunTimeException` class.
 
 ### Write Your Try-Catch-Finally Statement First
 
-In a way, try blocks are like transactions. Your catch has to leave your program in a consistent state, no matter what happens in the try. For this reason it is good practice to start with a try-catch-finally statement when you are writing code that could throw exceptions. This helps you define what the user of that code should expect, no matter what goes wrong with the code that is executed in the try.
+In a way, try blocks are like transactions. Your catch has to leave your program in a consistent state, no matter what happens in the try. For this reason it is good practice to start with a try-catch-finally statement when you are writing code that could throw exceptions. Don't delare any variables before the try block. This helps you define what the user of that code should expect, no matter what goes wrong with the code that is executed in the try.
 
 ### Provide Context with Exceptions
 
-Each exception that you throw should provide enough context to determine the source and location of an error.
+A well-named exception under a well-defined scope does not need a message at all. Each exception that you throw should provide enough context to determine the source and location of an error.
 
-Create informative error messages and pass them along with your exceptions. Mention the operation that failed and the type of failure. If you are logging in your application, pass along enough information to be able to log the error in your catch.
+In some cases, create informative error messages and pass them along with your exceptions. Mention the operation that failed and the type of failure. If you are logging in your application, pass along enough information to be able to log the error in your catch.
 
 ### Don't Return Null
 
 If you are tempted to return null from a method, consider throwing an exception or returning a SPECIAL CASE object instead. If you are calling a null-returning method from a third-party API, consider wrapping that method with a method that either throws an exception or returns a special case object.
+
+In some case, it is okay to return null if it means that you wanted to retun nothing.
 
 ### Don't Pass Null
 
