@@ -441,10 +441,12 @@ So if you keep your functions small, then the occasional multiple `return` , `br
 <a name="chapter4">
 <h1>Chapter 4 -  Comments</h1>
 </a>
+### Coding Standards
+Your code itself should expose your coding standard.
 
 Nothing can be quite so helpful as a well-placed comment. Nothing can clutter up a module more than frivolous dogmatic comments. Nothing can be quite so damaging as an old comment that propagates lies and misinformation.
 
-If our programming languages were expressive enough, or if we had the talent to subtly wield those languages to express our intent, we would not need comments very much—perhaps not at all.
+If our programming languages were expressive enough, or if we had the talent to subtly wield those languages to express our intent, we would not need comments very much—perhaps not at all. When comments are usually ignored, they render themselves as worthless.
 
 ### Comments Do Not Make Up for Bad Code
 
@@ -462,6 +464,7 @@ vs
 ```java
 if (employee.isEligibleForFullBenefits())
 ```
+With powerful processors and availability of memory at cheap prices, there is no excuse to not write expressive code unless you still work with assembly-level languages.
 
 ### Good Comments
 
@@ -481,6 +484,7 @@ protected abstract Responder responderInstance();
 ```
 
 A comment like this can sometimes be useful, but it is better to use the name of the function to convey the information where possible. For example, in this case the comment could be made redundant by renaming the function: `responderBeingTested`.
+Change your IDE settings to display comments in bright red colour.
 
 #### Explanation of Intent
 
@@ -499,6 +503,7 @@ public int compareTo(Object o)
   return 1; // we are greater because we are the right type.
 }
 ```
+Calrifications and explanation of intent is sometimes useful.
 
 #### Clarification
 
@@ -595,7 +600,7 @@ What purpose does this comment serve? It’s certainly not more informative than
 
 #### Misleading comments
 
-Sometimes, with all the best intentions, a programmer makes a statement in his comments that isn't precise enough to be accurate. Consider for another moment the example of the previous section. The method does not return when `this.closed` becomes `true`. It returns if `this.closed` is `true`; otherwise, it waits for a blind time-out and then throws an exception if `this.closed` is still not true.
+Sometimes, with all the best intentions, a programmer makes a statement in his comments that isn't precise enough to be accurate. Consider for another moment the example of the previous section. The method does not return when `this.closed` becomes `true`. It returns if `this.closed` is `true`; otherwise, it waits for a blind time-out and then throws an exception if `this.closed` is still not true. The information in a comment may degrade over time to become mis-information.
 
 #### Mandated Comments
 
