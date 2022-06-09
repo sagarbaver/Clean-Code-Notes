@@ -1272,6 +1272,24 @@ Decoupling what from when can dramatically improve both the throughput and struc
 - Concurrency bugs aren’t usually repeatable, so they are often ignored as one-offs instead of the true defects they are.
 - Concurrency often requires a fundamental change in design strategy.
 
+## Foundations of the SOLID Principles
+
+### Design Smells
+
+#### Rigidity
+It is the tendency of a software to be difficult to change.
+
+#### Fragility
+It is the tendency of the software to break in many places every time it is changed. Usually, it breaks in areas that have no conceptual relationship. Dependency between modules leads to fragility.
+
+#### Immobilility
+It is the inability to reuse software from other projects or from parts of the same project. Coupling and dependency makes system immobile. 
+
+#### Viscosity
+
+#### Needless Complexity
+Accounting for future requirements makes system needlessly complex. 
+
 #
 
 <a name="chapter14">
