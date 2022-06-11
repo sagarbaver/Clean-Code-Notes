@@ -972,9 +972,27 @@ A team of developers should agree upon a single formatting style, and then every
 </a>
 
 ### Data Abstraction
-From the outside, looking in, a class or object appears to have no variables. They're accessible through public methods.
-
+From the outside, looking in, a class or object appears to have no variables if they're declared as private members. They're accessible only through public methods. The more variables of a class a method manipulates, the more cohesive it is. Getters and setters are not very cohesive since they only maipulate a single variable each. Try to minimize use of getters and setters and instead maximize cohesion. 
+ 
 Hiding implementation is not just a matter of putting a layer of functions between the variables. Hiding implementation is about abstractions! A class does not simply push its variables out through getters and setters. Rather it exposes abstract interfaces that allow its users to manipulate the essence of the data, without having to know its implementation.
+
+```java
+public class Car {
+ private float gallonsOfGas;
+ 
+ // Exposes the implementation details of this class
+ public float getGallonsOfGas() {
+   return this.gallonsOfGas;
+ }
+ 
+ public float getPercentFuel() {
+   return this.gallonsOfGas;
+ }
+```
+
+If we were to create derivatives of the class Car, such as DieselCar and ElectricCar, they'd inherit `getGallonsOfGas` which doesn't make sense. OTOH, `getPercentFuel` would work well with all derivatives. The less implementation details you expose the more opportunity you have to make polymorphic classes. Polymorphism is the key to independent deployability and plugin structure. Polymorphism helps us protect client code (E.g., CarDriver) from changes to the implementation of server code (E.g., Car).
+
+From the outside, looking in, a class is nothing but a set of methods. Those methods may operate on the data, but tell you nothing about how that data is implemented. These methods are not getters and setters. They hide the data that don't need to be exposed. If data must be exposed, the methods do so in the most abstract form possible. 
 
 ### Data/Object Anti-Symmetry
 
