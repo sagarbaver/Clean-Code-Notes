@@ -792,9 +792,18 @@ Javadocs are for public APIs, in nonpublic code could be a distraction more than
 <h1>Chapter 5 -  Formatting</h1>
 </a>
 
-Code formatting is important. It is too important to ignore and it is too important to treat religiously. Code formatting is about communication, and communication is the professional developer’s first order of business.
+Code formatting is important. It is too important to ignore and it is too important to treat religiously. Code formatting is about communication, and communication is the professional developer’s first order of business. Getting your code to communicate is more important than getting your code to work.
+
+Keep your file sizes small irrespective of the project size. Use test-driven development as a way to keep the size in check.
 
 ### Vertical Formatting
+Use a blank line in the following cases:
+* Between methods
+* Between methods and variables
+* Between more than one kind of variables (e.g., public constants and private variables).
+* Between variables and if/while/for loops.
+
+Things that are related to each other should be vertically close to each other and vice-versa.
 
 #### Vertical Openness Between Concepts
 
@@ -893,6 +902,8 @@ There have been many debates over where instance variables should go. In C++ we 
 In general we want function call dependencies to point in the downward direction. That is, a function that is called should be below a function that does the calling. This creates a nice flow down the source code module from high level to low level. _(This is the exact opposite of languages like Pascal, C, and C++ that enforce functions to be defined, or at least declared, before they are used)_
 
 ### Horizontal Formatting
+How long should a line be?
+You never have to scroll right to see it.
 
 #### Horizontal Openness and Density
 
@@ -961,6 +972,7 @@ A team of developers should agree upon a single formatting style, and then every
 </a>
 
 ### Data Abstraction
+From the outside, looking in, a class or object appears to have no variables. They're accessible through public methods.
 
 Hiding implementation is not just a matter of putting a layer of functions between the variables. Hiding implementation is about abstractions! A class does not simply push its variables out through getters and setters. Rather it exposes abstract interfaces that allow its users to manipulate the essence of the data, without having to know its implementation.
 
