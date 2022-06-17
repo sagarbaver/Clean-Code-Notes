@@ -1077,6 +1077,10 @@ The complement is also true:
 
 > Procedural code makes it hard to add new data structures because all the functions must change. OO code makes it hard to add new functions because all the classes must change.
 
+The methods of a data structure manipulate individual variables. They generally don't manipulate a cohesive group of variables. These methods expose the implementation and do not abstract it.
+
+Data structures and switch statements are related. 
+
 Mature programmers know that the idea that everything is an object is a myth. Sometimes you really do want simple data structures with procedures operating on them.
 
 ### The Law of [Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter)
