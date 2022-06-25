@@ -441,10 +441,12 @@ So if you keep your functions small, then the occasional multiple `return` , `br
 <a name="chapter4">
 <h1>Chapter 4 -  Comments</h1>
 </a>
+### Coding Standards
+Your code itself should expose your coding standard.
 
 Nothing can be quite so helpful as a well-placed comment. Nothing can clutter up a module more than frivolous dogmatic comments. Nothing can be quite so damaging as an old comment that propagates lies and misinformation.
 
-If our programming languages were expressive enough, or if we had the talent to subtly wield those languages to express our intent, we would not need comments very much—perhaps not at all.
+If our programming languages were expressive enough, or if we had the talent to subtly wield those languages to express our intent, we would not need comments very much—perhaps not at all. When comments are usually ignored, they render themselves as worthless.
 
 ### Comments Do Not Make Up for Bad Code
 
@@ -462,6 +464,7 @@ vs
 ```java
 if (employee.isEligibleForFullBenefits())
 ```
+With powerful processors and availability of memory at cheap prices, there is no excuse to not write expressive code unless you still work with assembly-level languages.
 
 ### Good Comments
 
@@ -481,6 +484,7 @@ protected abstract Responder responderInstance();
 ```
 
 A comment like this can sometimes be useful, but it is better to use the name of the function to convey the information where possible. For example, in this case the comment could be made redundant by renaming the function: `responderBeingTested`.
+Change your IDE settings to display comments in bright red colour.
 
 #### Explanation of Intent
 
@@ -499,6 +503,7 @@ public int compareTo(Object o)
   return 1; // we are greater because we are the right type.
 }
 ```
+Calrifications and explanation of intent is sometimes useful.
 
 #### Clarification
 
@@ -595,7 +600,7 @@ What purpose does this comment serve? It’s certainly not more informative than
 
 #### Misleading comments
 
-Sometimes, with all the best intentions, a programmer makes a statement in his comments that isn't precise enough to be accurate. Consider for another moment the example of the previous section. The method does not return when `this.closed` becomes `true`. It returns if `this.closed` is `true`; otherwise, it waits for a blind time-out and then throws an exception if `this.closed` is still not true.
+Sometimes, with all the best intentions, a programmer makes a statement in his comments that isn't precise enough to be accurate. Consider for another moment the example of the previous section. The method does not return when `this.closed` becomes `true`. It returns if `this.closed` is `true`; otherwise, it waits for a blind time-out and then throws an exception if `this.closed` is still not true. The information in a comment may degrade over time to become mis-information.
 
 #### Mandated Comments
 
@@ -787,9 +792,18 @@ Javadocs are for public APIs, in nonpublic code could be a distraction more than
 <h1>Chapter 5 -  Formatting</h1>
 </a>
 
-Code formatting is important. It is too important to ignore and it is too important to treat religiously. Code formatting is about communication, and communication is the professional developer’s first order of business.
+Code formatting is important. It is too important to ignore and it is too important to treat religiously. Code formatting is about communication, and communication is the professional developer’s first order of business. Getting your code to communicate is more important than getting your code to work.
+
+Keep your file sizes small irrespective of the project size. Average file size should be around 100 lines and should never exceed 500. Use test-driven development as a way to keep the size in check.
 
 ### Vertical Formatting
+Use a blank line in the following cases:
+* Between methods
+* Between methods and variables
+* Between more than one kind of variables (e.g., public constants and private variables).
+* Between variables and if/while/for loops.
+
+Things that are related to each other should be vertically close to each other and vice-versa.
 
 #### Vertical Openness Between Concepts
 
@@ -888,6 +902,8 @@ There have been many debates over where instance variables should go. In C++ we 
 In general we want function call dependencies to point in the downward direction. That is, a function that is called should be below a function that does the calling. This creates a nice flow down the source code module from high level to low level. _(This is the exact opposite of languages like Pascal, C, and C++ that enforce functions to be defined, or at least declared, before they are used)_
 
 ### Horizontal Formatting
+How long should a line be?
+You never have to scroll right to see it.
 
 #### Horizontal Openness and Density
 
@@ -956,8 +972,27 @@ A team of developers should agree upon a single formatting style, and then every
 </a>
 
 ### Data Abstraction
-
+From the outside, looking in, a class or object appears to have no variables if they're declared as private members. They're accessible only through public methods. The more variables of a class a method manipulates, the more cohesive it is. Getters and setters are not very cohesive since they only maipulate a single variable each. Try to minimize use of getters and setters and instead maximize cohesion. Tell, don't ask!
+ 
 Hiding implementation is not just a matter of putting a layer of functions between the variables. Hiding implementation is about abstractions! A class does not simply push its variables out through getters and setters. Rather it exposes abstract interfaces that allow its users to manipulate the essence of the data, without having to know its implementation.
+
+```java
+public class Car {
+ private float gallonsOfGas;
+ 
+ // Exposes the implementation details of this class
+ public float getGallonsOfGas() {
+   return this.gallonsOfGas;
+ }
+ 
+ public float getPercentFuel() {
+   return this.gallonsOfGas;
+ }
+```
+
+If we were to create derivatives of the class Car, such as DieselCar and ElectricCar, they'd inherit `getGallonsOfGas` which doesn't make sense. OTOH, `getPercentFuel` would work well with all derivatives. The less implementation details you expose the more opportunity you have to make polymorphic classes. Polymorphism is the key to independent deployability and plugin structure. Polymorphism helps us protect client code (E.g., CarDriver) from changes to the implementation of server code (E.g., Car).
+
+From the outside, looking in, a class is nothing but a set of methods. Those methods may operate on the data, but tell you nothing about how that data is implemented. These methods are not getters and setters. They hide the data that don't need to be exposed. If data must be exposed, the methods do so in the most abstract form possible. 
 
 ### Data/Object Anti-Symmetry
 
@@ -1036,13 +1071,18 @@ public class Circle implements Shape {
 
 Again, we see the complimentary nature of these two definitions; they are virtual opposites! This exposes the fundamental dichotomy between objects and data structures:
 
-> Procedural code (code using data structures) makes it easy to add new functions without changing the existing data structures. OO code, on the other hand, makes it easy to add new classes without changing existing functions.
+> Procedural code (code using data structures) makes it easy to add new functions without changing the existing data structures, thereby not breaking independent deployability. However, they expose us to new types.
+>  OO code, on the other hand, makes it easy to add new classes without changing existing functions. Objects protect you from new types. However, when you add a new method to your base class, you break independent deployability.
 
 The complement is also true:
 
 > Procedural code makes it hard to add new data structures because all the functions must change. OO code makes it hard to add new functions because all the classes must change.
 
-Mature programmers know that the idea that everything is an object is a myth. Sometimes you really do want simple data structures with procedures operating on them.
+The methods of a data structure manipulate individual variables. They generally don't manipulate a cohesive group of variables. These methods expose the implementation and do not abstract it.
+
+Data structures and switch statements are related. Don't put business rules into data structures.
+
+Mature programmers know that the idea that everything is an object is a myth. Sometimes you really do want simple data structures with procedures operating on them. We use classes and objects when it is types that are more likely to be added. We use data structures and switch statements when it is methods that are more likely to be added.
 
 ### The Law of [Demeter](https://en.wikipedia.org/wiki/Law_of_Demeter)
 
@@ -1097,7 +1137,26 @@ Returning null from methods is bad, but passing null into methods is worse. Unle
 <h1>Chapter 8 -  Boundaries</h1>
 </a>
 
-We seldom control all the software in our systems. Sometimes we buy third-party pack- ages or use open source. Other times we depend on teams in our own company to produce components or subsystems for us. Somehow we must cleanly integrate this foreign code with our own.
+Some common examples of software boundaries include:
+* App and main partitions
+* Views and models
+* Database and domain objects
+
+For each boundary, one side is concrete and the other side is abstract. E.g., main is concrete and the rest of the app is abstract. In such cases, you want all the source code dependencies pointing from the concrete towards the abstract side. E.g., the database depends on the domain, the domain does not depend on the database. OO design allows us to invert source code dependencies without inverting the flow of control. The boundary rules are fundamental to good OO and software design.
+
+We seldom control all the software in our systems. Sometimes we buy third-party packages or use open source. Other times we depend on teams in our own company to produce components or subsystems for us. Somehow we must cleanly integrate this foreign code with our own.
+
+### The Impedance Mismatch
+A database row is a data structure. It is not a domain or business object. You cannot force it to be an object. 
+What about ORMs?
+They map a data structure within a database to a data structure in memory. 
+
+Our application is composed of domain objects. The methods of these objects are business rules organized into classes that differ from the DB schema. This is the true impedance mismatch between relational databases and OO design. This is because most databases are designed for the enterprise rather than for specific apps. An app can define its schema that needs to conform to the DB enterprise design. An app manipulates business objects rather than directly manipulating table rows.
+The DB layer is responsible to make the conversions between the data structures and the domain objects defined under an app.
+
+<img width="638" alt="App and DB layers" src="https://user-images.githubusercontent.com/15244609/175789478-68bb8b88-25b3-4fd6-a085-c0bfb159357a.png">
+
+Similarly, an app knows nothing about its views. Views are concrete.
 
 ### Using Third-Party Code
 
