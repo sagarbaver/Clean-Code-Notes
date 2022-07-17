@@ -1212,6 +1212,12 @@ Interesting things happen at boundaries. Change is one of those things. Good sof
 **D**riven
 **D**evelopment
 
+As the code rots, it becomes rigid, fragile, and immobile. A change requires an update at many places increasing the risk of breaking the logic. Debugging becomes complicates, estimates grow, tempers mount, and fear dominates. 
+
+If we attempt a big clean up, it is hard and froth with risks. We're more likely to introduce subtle bugs, race conditions, or data corruption. 
+
+> We can't clean code until we eliminate the fear of change.
+
 ### The Three Laws of TDD
 
 - **First Law** You may not write production code until you have written a failing unit test.
@@ -1220,9 +1226,7 @@ Interesting things happen at boundaries. Change is one of those things. Good sof
 
 ### Clean Tests
 
-If you don't keep your tests clean, you will lose them.
-
-The readability it's very important to keep clean your tests.
+If you don't keep your tests clean, you will lose them. The readability it's very important to keep clean your tests. A good suite of tests elminates fear to change the code and keeps the defect list small. 
 
 ### One Assert per test
 
