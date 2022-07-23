@@ -1220,13 +1220,16 @@ If we attempt a big clean up, it is hard and froth with risks. We're more likely
 
 ### The Three Laws of TDD
 
-- **First Law** You may not write production code until you have written a failing unit test.
-- **Second Law** You may not write more of a unit tests than is sufficient to fail, and not comipling is failing.
+- **First Law** You do not write production code until you have written a failing unit test.
+- **Second Law** You do not write more of a unit tests than is sufficient to fail, and not comipling is failing.
 - **Third Law** You may not write more production code than is sufficient to pass the currently failing tests.
+
+You'll effectively bounce between writing a little bit of tests and production code.
 
 ### Clean Tests
 
-If you don't keep your tests clean, you will lose them. The readability it's very important to keep clean your tests. A good suite of tests elminates fear to change the code and keeps the defect list small. 
+If you don't keep your tests clean, you will lose them. The readability it's very important to keep clean your tests. A good suite of tests elminates fear to change the code and keeps the defect list small. It also mitigates defects, shrinks debug time, and boosts speed of development.
+Unit tests serve as low-level design documents. They can't get out of sync with the application code and hence are more reliable. Tests have a massive influence on the design of the production code. Writing tests first makes production code testable. Testable also means you'll end up designing functions that are accessible and decoupled.
 
 ### One Assert per test
 
