@@ -1212,17 +1212,26 @@ Interesting things happen at boundaries. Change is one of those things. Good sof
 **D**riven
 **D**evelopment
 
+As the code rots, it becomes rigid, fragile, and immobile. A change requires an update at many places increasing the risk of breaking the logic. Debugging becomes complicates, estimates grow, tempers mount, and fear dominates. 
+
+If we attempt a big clean up, it is hard and froth with risks. We're more likely to introduce subtle bugs, race conditions, or data corruption. 
+
+> We can't clean code until we eliminate the fear of change.
+
 ### The Three Laws of TDD
 
-- **First Law** You may not write production code until you have written a failing unit test.
-- **Second Law** You may not write more of a unit tests than is sufficient to fail, and not comipling is failing.
+- **First Law** You do not write production code until you have written a failing unit test.
+- **Second Law** You do not write more of a unit tests than is sufficient to fail, and not comipling is failing.
 - **Third Law** You may not write more production code than is sufficient to pass the currently failing tests.
+
+You'll effectively bounce between writing a little bit of tests and production code.
 
 ### Clean Tests
 
-If you don't keep your tests clean, you will lose them.
+If you don't keep your tests clean, you will lose them. The readability it's very important to keep clean your tests. A good suite of tests elminates fear to change the code and keeps the defect list small. It also mitigates defects, shrinks debug time, and boosts speed of development.
+Unit tests serve as low-level design documents. They can't get out of sync with the application code and hence are more reliable. Tests have a massive influence on the design of the production code. Writing tests first makes production code testable. Testable also means you'll end up designing functions that are accessible and decoupled. Tests help facilitate flexible, maintainable. and scalable software.
 
-The readability it's very important to keep clean your tests.
+Trust your test suite in the same way you'd trust your parachute after jumping from a plane. Writing tests after the fact leads to lower trust levels since you've already manual tested the code and are less likely to add comprehensive tests. You are more likely to take shortcuts if you write tests after you've written production code.
 
 ### One Assert per test
 
