@@ -1264,6 +1264,15 @@ Testing GUIs: The contents of the GUI and the decision making that goes into ren
 Testing databases: Usually you don't need to test them. What you do need to test is that your schemas and queries work as intended. Use mocks and stubs for your database layer. 
 Writing tests is not part of a programmer's job description: Such programmers need to grow up.
 
+### Discipline and Professionalism
+Software, like accountantcy, is a sensitive discipline. A single bit if set the wrong way can cause the entire app to crash. Double entry book keeping is considered an appropriate due diligence for practicing accountantcy. Accountants also always enter the debits and credits together to keep the balance sheet zero at all times. TDD is similar to this practice in the sense that tests and production code duplicate each other but follow complementary pathways to result in a successfull execution. Errors made by programmers are no less severe than those made by accountants. Programmers must have due dilligence that is at least as strict and effective as accountants. 
+
+When a team of professional developers release their software to QA, the QA should expect to find NOTHING. This is basic software ethics. You don't ship software that you don't know whether it works. Shipping code you're not sure of is irresponsible and unprofessional. 
+
+You should never be satisfied shipping code with less than 100% coverage although you may invariably have to do so. 
+
+TDD is all about YOU! Your team will follow suite just by seeing the benefits you reap by writing TDD and moving fast. 
+
 <a name="chapter10">
 <h1>Chapter 10 -  Classes</h1>
 </a>
