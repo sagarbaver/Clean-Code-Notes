@@ -1231,7 +1231,7 @@ You'll effectively bounce between writing a little bit of tests and production c
 If you don't keep your tests clean, you will lose them. The readability it's very important to keep clean your tests. A good suite of tests elminates fear to change the code and keeps the defect list small. It also mitigates defects, shrinks debug time, and boosts speed of development.
 Unit tests serve as low-level design documents. They can't get out of sync with the application code and hence are more reliable. Tests have a massive influence on the design of the production code. Writing tests first makes production code testable. Testable also means you'll end up designing functions that are accessible and decoupled. Tests help facilitate flexible, maintainable. and scalable software.
 
-Trust your test suite in the same way you'd trust your parachute after jumping from a plane. Writing tests after the fact leads to lower trust levels since you've already manual tested the code and are less likely to add comprehensive tests. You are more likely to take shortcuts if you write tests after you've written production code.
+Trust your test suite in the same way you'd trust your parachute after jumping from a plane. Writing tests after the fact leads to lower trust levels since you've already manual tested the code and are less likely to add comprehensive tests. You are more likely to take shortcuts if you write tests after you've written production code. Production code is tested by tests and tests are tested by production code. Treat your tests the same way tou treat your production code.
 
 ### One Assert per test
 
@@ -1250,6 +1250,19 @@ This rule will help you to keep short functions.
 - **Repeatable** Test Should be repeatable in any environment.
 - **Self-Validating** Test should have a boolean output. either they pass or fail.
 - **Timely** Unit tests should be written just before the production code that makes them pass. If you write tests after the production code, then you may find the production code to be hard to test.
+
+### Answering Objections
+TDD requires writing more code and therefore slows you down: In practice, it takes more time debugging bugs. Besides, having a clean and well-tested codebase as the starting point speeds up development.
+Practicing TDD requires permission from your boss: TDD is a personal practice. Once should require no permissions for it.
+Refactoring is re-work. It would be better to write the code correctly the first time around: Every creative effort on the planet is done iteratively. Programmers don't write the perfect code the first time either.
+A single change to production code can cause a whole lot of tests to fail: This indicates a design flaw in your tests and does not undermine a need for tests. Introduce abstractions as necessary within your tests to keep the decoupled. 
+The presence of a test suite does not prove the absence of bugs: With tests, our real goal is to eliminate the fear of change.
+TDD is a bit of a dogma: Humans often require descipline. It is more productive to not having to make the same decisions over and over again and follow a set of rules. That said, every discipline requires humans to revisit and refine its theory over time. Discipline does not preclude thought.
+Tests can be written at the end as well: Humans, by nature, consider things that come first to be more important than things that come later. Tests come first since they are important and make your production code flexible. Without them, the production code rots.
+Testing legacy code that don't have any test suites: When there's a need to make changes to it, write tests for the affected area before refactor and make small design changes.
+Testing GUIs: The contents of the GUI and the decision making that goes into rendering elements can be tested. In other words, we can test the presenter layer. We can leave out testing the formatting layer sunce that is susceptible to frequent changes (view layer). 
+Testing databases: Usually you don't need to test them. What you do need to test is that your schemas and queries work as intended. Use mocks and stubs for your database layer. 
+Writing tests is not part of a programmer's job description: Such programmers need to grow up.
 
 <a name="chapter10">
 <h1>Chapter 10 -  Classes</h1>
