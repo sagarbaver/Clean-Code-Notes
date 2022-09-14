@@ -19,6 +19,7 @@
 - [Chapter 15 - JUnit Internals](#chapter15)
 - [Chapter 16 - Refactoring SerialDate](#chapter15)
 - [Chapter 17 - Smells and Heuristics](#chapter17)
+- [Architecture, Use Cases, and High Level Design](#chapter18)
 
 <a name="chapter1">
 <h1>Chapter 1 -  Clean Code</h1>
@@ -1404,6 +1405,15 @@ This chapter is a study case. It's recommendable to completely read it to unders
 A reference of code smells from Martin Fowler's _Refactoring_ and Robert C Martin's _Clean Code_.
 
 While clean code comes from discipline and not a list or value system, here is a starting point.
+
+<a name="chapter18">
+<h1>Architecture, Use Cases, and High Level Design</h1>
+</a>
+
+Architecture is the shape a system takes to meet its use-cases and in order to remain flexible and maintainable. It is not about tools and building materials, instead, it is about usage. A good architecture screams use-cases and not just the delivery mechanism. It keeps these two facets decoupled. The use-cases should stand alone. 
+
+## Deferring Decisions
+A good architecture allows you to postpone decisions such as which UI, DB, schema, framework, and web server to use and maximizes the number of decisions not made. A good architect knows how to keep options open for as long as possible. A test double is an object that stands in for another for the purpose of facilitating TDD.
 
 ## Comments
 
