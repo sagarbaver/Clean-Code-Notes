@@ -1410,10 +1410,37 @@ While clean code comes from discipline and not a list or value system, here is a
 <h1>Architecture, Use Cases, and High Level Design</h1>
 </a>
 
-Architecture is the shape a system takes to meet its use-cases and in order to remain flexible and maintainable. It is not about tools and building materials, instead, it is about usage. A good architecture screams use-cases and not just the delivery mechanism. It keeps these two facets decoupled. The use-cases should stand alone. 
+Architecture is the shape a system takes to meet its use-cases and in order to remain flexible and maintainable. It is not about tools, frameworks, and building materials, instead, it is about usage. A good architecture screams use-cases and not just the delivery mechanism. It keeps these two facets decoupled. The use-cases should stand alone. 
 
 ## Deferring Decisions
-A good architecture allows you to postpone decisions such as which UI, DB, schema, framework, and web server to use and maximizes the number of decisions not made. A good architect knows how to keep options open for as long as possible. A test double is an object that stands in for another for the purpose of facilitating TDD.
+A good architecture allows you to postpone decisions such as which UI, DB, schema, framework, and web server to use and maximizes the number of decisions not made. A good architect knows how to keep options open for as long as possible without incurring undue costs. A test double is an object that stands in for another for the purpose of facilitating TDD. When system components are well decoupled, it allows us to do a thorough cost vs. business value analysis. This inturn empowers prudent decision making.
+
+## Use Cases
+Often, the web is made the central organizing principle of a business system, whereas, in reality, the web is only a detail. It is nothing more than a delivery mechanism. Just by looking at the architecture of a system, you should not be able to tell whether it is delivered by web, console, or other means.
+The development of an application should be driven by delivery-independent use-cases. It is the use-cases that form the central organizing priniciple and the abstractions around which the system is built. You should be able to spot the intent of the system clearly.
+
+A use-case is a formal description of how a user interacts with the system to achieve a specific goal. It talks about the way that the data and commands go into the system and the way in which it responds. A delivery-independent architecture starts with delivery-independent use-cases. It is essentially an algorithm for the interpretation of inputted data and the generation of the output. 
+E.g.,
+```
+Create Order
+------------
+Data:
+<Customer-id>, <Customer-contact-info>
+<Shipment-destination>, <Shipment-mechanism>
+<Payment-info>
+
+Primary Course (nothing goes wrong):
+1. Order clerk issues "Create Order" command with above data.
+2. System validates all the data.
+3. System creates order and generates an order-id.
+4. System delivers order-id to the clerk. 
+
+Exception course (a.k.a extension course): Validation Error
+1. System delivers error message to the clerk.
+```
+
+Use-cases tend to define real world objects such as customer and order objects shown above. However, they also define business rules around them.
+
 
 ## Comments
 
