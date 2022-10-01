@@ -1407,7 +1407,7 @@ A reference of code smells from Martin Fowler's _Refactoring_ and Robert C Marti
 While clean code comes from discipline and not a list or value system, here is a starting point.
 
 <a name="chapter18">
-<h1>Architecture, Use Cases, and High Level Design</h1>
+	<h1>Architecture, Use Cases, and High Level Design</h1>
 </a>
 
 Architecture is the shape a system takes to meet its use-cases and in order to remain flexible and maintainable. It is not about tools, frameworks, and building materials, instead, it is about usage. A good architecture screams use-cases and not just the delivery mechanism. It keeps these two facets decoupled. The use-cases should stand alone. 
@@ -1440,6 +1440,17 @@ Exception course (a.k.a extension course): Validation Error
 ```
 
 Use-cases tend to define real world objects such as customer and order objects shown above. However, they also define business rules around them.
+
+## Partitioning
+Entity objects are repositories of application independent business rules. The methods on entity objects perform functions that are valid in any of the applications that the entity object can be used in. E.g., A product object can be useful to an order-entry, order-fulfillment, inventory management, or online catalog systems. The methods in the product object would not be application-specific. 
+
+Use cases are implemented using interactor objects. These objects are application-specific business rules. A create order function or order item object is specific to an object-entry system. The interactors achieve their goal with app-specific logic that calls the app-agnostic logic within the entities. E.g., A create order interactor invokes the constructor and the getId method of the order entity. It is the interactor that knows how to call those methods to achieve the goal of the use case. 
+
+Boundary objects isolate the use cases from the delivery mechanism and provide a communications pathway between the two. The delivery mechanism gathers user data, wraps it up into a neat canonical form, ships it through the boundary to the interactors. The interactors then invoke their app-specific business rules to manipulate the entity objects and their app-agnostic rules. Finally, the interactors gather the results, wrap it up into a neat canonical form called the result model and ship it through the boundary to the delivery mechanism. In this way, the business rules are decoupled from the delivery mechanism. 
+
+<img width="798" alt="Screenshot 2022-10-01 at 10 35 27 AM" src="https://user-images.githubusercontent.com/15244609/193421499-65f21f96-d889-4805-a69a-2586c2557778.png">
+
+
 
 
 ## Comments
